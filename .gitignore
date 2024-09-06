@@ -1,0 +1,13 @@
+.gralde
+.settings
+build
+bin
+target
+.metadata
+.pmd
+bash.exe.stackdump
+/src/main/generated/
+.idea/
+*.iml
+/db/hsqldb/
+.scannerwork
