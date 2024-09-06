@@ -1,0 +1,6 @@
+apiVersion: v2
+description: System Java chart for DevOps CI/CD
+keywords:
+- system-java
+name: system-java
+version: 4.0.1

@@ -1,45 +1,14 @@
-# React Application (Getting Started Guide) 
+# System Java
 
-본 프로젝트는 React Application을 적용하기 위한 템플릿 프로젝트 입니다.
+System Java chart for DevOps CI/CD
 
-## What's Here
- ```
-.
-├── src
-│   ├── App.js
-│   └── index.js
-├── public/
-├── Dockerfile
-└── package.json
-```
+## Base container image
+eclipse-temurin
 
-## Getting Started
-
-### Requirements
-- node 14
-
-### Installation and Build
-```sh
-npm install --no-fund
-npm run build
-```
-
-### Run app
-```sh
-npm start
-```
-[http://localhost:3000](http://localhost:3000)에 접속해서 확인하세요.
-
-### Run container image
-```sh
-# build
-# base container image : nginx
-docker build -t react .
-# run
-docker run --rm -p 8080:80 react
-```
-[http://localhost:8080](http://localhost:8080)에 접속해서 확인하세요.
-
-### Reference
-- [React documentation](https://reactjs.org/)
-- [React Tutorial](https://reactjs.org/tutorial/tutorial.html)
+## Core parameters
+| Name | Description | Value |
+| --- | --- | --- |
+| `service.type` | Kubernetes Service type | `ClusterIP` |
+| `service.externalPort` | HTTP port to expose at service level | `80` |
+| `service.internalPort` | HTTP port to expose at container level | `80` |
+| `ingress.enabled` | Enable ingress controller resource | `false` |

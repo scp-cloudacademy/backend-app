@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "form": true,
+    "properties": {
+        "service": {
+            "type": "object",
+            "form": true,
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Service Type",
+                    "form": true,
+                    "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"]
+                },
+                "externalPort": {
+                    "type": "number",
+                    "title": "Service Port",
+                    "description": "HTTP port to expose at service level",
+                    "form": true
+                },
+                "internalPort": {
+                    "type": "number",
+                    "title": "Container Port",
+                    "description": "HTTP port to expose at container level",
+                    "form": true
+                }
+            },
+            "required": ["type", "externalPort", "internalPort"]
+        }
+    }
+}

@@ -1,0 +1,83 @@
+---
+replicaCount: 1
+image:
+  repository: "mzlife-eeswlewa.scr.kr-west.scp-in.com/mzlife/backend-app"
+  tag: "20240702.183417"
+  pullPolicy: "Always"
+imagePullSecrets:
+- name: "backend-java-argocd-cicd-2ljmc9kqsvalkc-ejmrzui"
+service:
+  name: "java"
+  type: "ClusterIP"
+  externalPort: 80
+  internalPort: 80
+  nodePort: null
+ingress:
+  enabled: false
+  domain: null
+  path: "/"
+  pathType: "Prefix"
+  tls:
+    enabled: false
+    secretName: null
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  addHosts: null
+resources:
+  limits:
+    cpu: 1
+    memory: "2Gi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+persistence:
+  enabled: false
+  pvcList:
+  - name: "logs"
+    existingVolumeClaim: null
+    accessMode: "ReadWriteMany"
+    mountPath: "/temp/logs"
+nodeSelector: null
+strategy:
+  type: "RollingUpdate"
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+terminationGracePeriodSeconds: 30
+readinessProbe:
+  enabled: false
+  type: "httpGet"
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 5
+  successThreshold: 1
+  path: "/"
+  command: null
+livenessProbe:
+  enabled: false
+  type: "httpGet"
+  initialDelaySeconds: 600
+  periodSeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 5
+  path: "/"
+  command: null
+lifecycle:
+  prestop:
+    enabled: false
+    command: "/opt/eap/bin/stop.sh"
+env:
+  envList:
+    TZ: "Asia/Seoul"
+hostAlias: null
+automountServiceAccountToken: true
+networkPolicy:
+  enabled: false
+  ingress:
+    allowed: true
+autoscale:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
